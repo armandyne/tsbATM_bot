@@ -1,7 +1,7 @@
 pyTelegramBotAPI
 requests
 Flask
-BeautifulSoup
+bs4
 json
 demjson
 psycopg2

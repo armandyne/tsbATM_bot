@@ -20,20 +20,20 @@ def start_handler(message):
 def send_nearest_atm(message):
     print(message)
     bot.send_chat_action(message.chat.id, "typing").wait()
-    db = DatabaseHelper.DatabaseHelper(settings.DATABASE_NAME,settings.DATABASE_USER,settings.DATABASE_PASSWORD)
+    db = DatabaseHelper.DatabaseHelper(settings.DATABASE_NAME, settings.DATABASE_USER, settings.DATABASE_PASSWORD, settings.DATABASE_HOST, settings.DATABASE_PORT)
     result = db.select_atms(message.location.longitude, message.location.latitude)
-    if len(result)==0:
+    if len(result) == 0:
         result = db.select_atms(message.location.longitude, message.location.latitude, 6000)
     db.close()
      
-    if len(result)==0:
+    if len(result) == 0:
         bot.send_message(message.chat.id, "К сожалению, поблизости нет банкоматов.").wait()
     else:
         bot.send_location(message.chat.id, result[0][3], result[0][2]).wait()
         descr_text = '''Ближайший банкомат :
 Адрес:{}
 {}
-Расстояние: {} м.'''.format(result[0][0],result[0][1],result[0][4])
+Расстояние: {} м.'''.format(result[0][0], result[0][1], result[0][4])
         bot.send_message(message.chat.id, descr_text).wait()
         
 @server.route('/' + settings.BOT_TOKEN, methods=['POST'])

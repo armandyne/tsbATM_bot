@@ -9,7 +9,7 @@ f.close()
 
 print(atms_json)
 
-connection = psycopg2.connect(database=settings.DATABASE_NAME, user=settings.DATABASE_USER, password=settings.DATABASE_PASSWORD)
+connection = psycopg2.connect(database=settings.DATABASE_NAME, user=settings.DATABASE_USER, password=settings.DATABASE_PASSWORD, host=settings.DATABASE_HOST, port=settings.DATABASE_PORT)
 cursor = connection.cursor()
 
 cursor.execute("DROP TABLE IF EXISTS atm_locations")        

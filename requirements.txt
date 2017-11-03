@@ -1,0 +1,7 @@
+pyTelegramBotAPI
+requests
+Flask
+BeautifulSoup
+json
+demjson
+psycopg2

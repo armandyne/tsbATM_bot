@@ -24,12 +24,12 @@ print("length=", len(cities), cities)
 all_atms_info = []
 for (city, param) in cities.items():
     print(city, param)
-	if city=='Астана':
-		html = requests.get(base_url).text 
-	else:
-		html = requests.get(base_url + param).text     
+    if city=='Астана':
+        html = requests.get(base_url).text
+    else:
+        html = requests.get(base_url + param).text
     soup = BeautifulSoup(html, "html.parser")
-    script = soup.find("script", text=re.compile("var points = new Array"))    
+    script = soup.find("script", text=re.compile("var points = new Array"))
     if script is not None:
         # print("script=", script)
         json_text = "[" + re.search(r"\s*var points = new Array\s*\(\s*({.*?})\s*\)\s*;\s*", script.string, flags=re.MULTILINE | re.DOTALL).group(1) + "]"        

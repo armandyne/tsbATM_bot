@@ -17,14 +17,17 @@ for li_a in ul.find_all("a"):
     print("href=", li_a["href"], ", text=", li_a.text)
     if li_a.text is not None and len(li_a.text) > 0:
         cities[li_a.text] = li_a["href"]
-print("length=", len(cities), cities)   
 
 cities['Астана'] = ''
+print("length=", len(cities), cities) 
 
 all_atms_info = []
 for (city, param) in cities.items():
     print(city, param)
-    html = requests.get(base_url + param).text     
+	if city=='Астана':
+		html = requests.get(base_url).text 
+	else:
+		html = requests.get(base_url + param).text     
     soup = BeautifulSoup(html, "html.parser")
     script = soup.find("script", text=re.compile("var points = new Array"))    
     if script is not None:

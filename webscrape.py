@@ -19,7 +19,7 @@ for li_a in ul.find_all("a"):
         cities[li_a.text] = li_a["href"]
 print("length=", len(cities), cities)   
 
-cities['Астана'] = base_url
+cities['Астана'] = ''
 
 all_atms_info = []
 for (city, param) in cities.items():
